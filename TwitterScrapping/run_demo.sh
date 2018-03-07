@@ -1,0 +1,1 @@
+python scrapeScript.py --hashTagsFile=HashtagsList --languageFile=LanguagesList --outputFolder=../Data/TwitterData/
