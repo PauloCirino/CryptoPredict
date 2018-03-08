@@ -12,21 +12,61 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
         (language, hashtag) = iter_arg
 
         if verbose:
+            print('Hashtag =', hashtag, 'Lang =', language,
+                  'at', datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") )
+
+        if verbose:
             print('Quering', hashtag, ' in ', language, 'language at', datetime.datetime.now())
 
         saving_path = os.path.join(output_folder, '/'.join(iter_arg))
         if not os.path.exists(saving_path) :
+            if verbose :
+                print('Creating path ', str(saving_path))
             os.makedirs(saving_path)
+
+        saving_path = os.path.join(saving_path, 'main.csv')
+
+        file_name = 
 
         init_date = datetime.date(init_year, 1, 1)
         end_date = datetime.date.today()
+            
+        if verbose :
+            print('Initializing query ', str(saving_path),
+                  ' at', datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") )
+
         querry_result = twitterscraper.query_tweets(query = hashtag, 
                                                     begindate = init_date, 
                                                     enddate = end_date,
                                                     limit = None,
                                                     lang = language)
-        print(querry_result)
 
+            
+        if verbose :
+            print('Saving tweets to file', str(saving_path), 
+                  'at', datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") )
+
+        with open('somefile.txt', 'w') as file:
+            header_list = ['timestamp', 'full_name', 'ID', 'url',
+                           'user', 'html', 'text', 'likes', 'replies'] 
+            file.write('\t'.join(header_list) + '\n')
+
+            for item in querry_result :
+                timestamp = item.timestamp.strftime("%Y-%m-%d %H:%M:%S")
+                full_name = item.fullname
+                ID = item.id
+                url = item.url
+                user = item.user
+                html = item.html
+                text = item.text
+                likes = item.likes
+                replies = item.replies
+                retweets = item.retweets
+
+                items_list = [timestamp, full_name, ID, url, user, html, text, likes, replies, retweets]
+                file.write('\t'.join(items_list) + '\n')
+                
+        print('\n')
 
 
 if __name__ == '__main__':
