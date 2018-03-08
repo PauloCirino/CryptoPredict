@@ -26,8 +26,6 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
 
         saving_path = os.path.join(saving_path, 'main.csv')
 
-        file_name = 
-
         init_date = datetime.date(init_year, 1, 1)
         end_date = datetime.date.today()
             
@@ -46,7 +44,7 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
             print('Saving tweets to file', str(saving_path), 
                   'at', datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") )
 
-        with open('somefile.txt', 'w') as file:
+        with open(saving_path, 'w') as file:
             header_list = ['timestamp', 'full_name', 'ID', 'url',
                            'user', 'html', 'text', 'likes', 'replies'] 
             file.write('\t'.join(header_list) + '\n')
@@ -65,7 +63,7 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
 
                 items_list = [timestamp, full_name, ID, url, user, html, text, likes, replies, retweets]
                 file.write('\t'.join(items_list) + '\n')
-                
+
         print('\n')
 
 
