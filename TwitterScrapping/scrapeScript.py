@@ -3,6 +3,7 @@ import itertools
 import os
 import twitterscraper
 import datetime
+import time
 
 def main(hashtag_array, language_array, output_folder, verbose, init_year):
 
@@ -13,7 +14,7 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
 
         if verbose:
             print('Hashtag =', hashtag, 'Lang =', language,
-                  'at', str(datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") ) )
+                  'at', time.strftime('%X %x') )
 
         if verbose:
             print('Quering', hashtag, ' in ', language, 'language at', datetime.datetime.now())
@@ -31,7 +32,7 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
             
         if verbose :
             print('Initializing query ', str(saving_path),
-                  ' at', str(datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") ) )
+                  ' at', time.strftime('%X %x') )
 
         querry_result = twitterscraper.query_tweets(query = hashtag, 
                                                     begindate = init_date, 
@@ -42,7 +43,7 @@ def main(hashtag_array, language_array, output_folder, verbose, init_year):
             
         if verbose :
             print('Saving tweets to file', str(saving_path), 
-                  'at', str(datetime.datetime.strftime("%Y-%m-%d %H:%M:%S") ) )
+                  'at', time.strftime('%X %x') )
 
         with open(saving_path, 'w') as file:
             header_list = ['timestamp', 'full_name', 'ID', 'url',
